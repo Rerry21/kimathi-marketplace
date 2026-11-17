@@ -25,18 +25,63 @@ function getStyles(isMobile) {
       backgroundColor: active ? colors.accentMuted : "transparent",
       cursor: "pointer",
       marginBottom: "0.4rem",
+      display: "flex",
+      justifyContent: "space-between",
+      alignItems: "flex-start",
+      gap: "0.5rem",
     }),
+    threadInfo: {
+      flex: 1,
+      minWidth: 0,
+    },
+    threadHeaderRow: {
+      display: "flex",
+      justifyContent: "space-between",
+      alignItems: "baseline",
+      marginBottom: "0.15rem",
+    },
     threadName: {
       fontFamily: fonts.body,
       fontWeight: 600,
       fontSize: "0.92rem",
       color: colors.text,
+      whiteSpace: "nowrap",
+      overflow: "hidden",
+      textOverflow: "ellipsis",
+    },
+    threadTime: {
+      fontFamily: fonts.body,
+      fontSize: "0.7rem",
+      color: colors.textMuted,
+      flexShrink: 0,
     },
     threadListing: {
       fontFamily: fonts.body,
       fontSize: "0.78rem",
+      color: colors.accent,
+      marginBottom: "0.15rem",
+      whiteSpace: "nowrap",
+      overflow: "hidden",
+      textOverflow: "ellipsis",
+    },
+    threadSnippet: {
+      fontFamily: fonts.body,
+      fontSize: "0.82rem",
       color: colors.textMuted,
-      marginTop: "0.15rem",
+      whiteSpace: "nowrap",
+      overflow: "hidden",
+      textOverflow: "ellipsis",
+    },
+    unreadBadge: {
+      backgroundColor: colors.accent,
+      color: "#FFFFFF",
+      fontSize: "0.7rem",
+      fontWeight: 600,
+      padding: "0.1rem 0.45rem",
+      borderRadius: "999px",
+      flexShrink: 0,
+      minWidth: "18px",
+      textAlign: "center",
     },
     chatPanel: {
       display: "flex",
@@ -263,8 +308,20 @@ function Messages() {
               )}
               onClick={() => openConversation(conv)}
             >
-              <p style={styles.threadName}>{conv.other_user_name}</p>
-              <p style={styles.threadListing}>{conv.listing_title}</p>
+              <div style={styles.threadInfo}>
+                <div style={styles.threadHeaderRow}>
+                  <p style={styles.threadName}>{conv.other_user_name}</p>
+                  <span style={styles.threadTime}>{formatTime(conv.created_at)}</span>
+                </div>
+                <p style={styles.threadListing}>{conv.listing_title}</p>
+                <p style={styles.threadSnippet}>
+                  {conv.last_sender_id === user.id ? "You: " : ""}
+                  {conv.last_message}
+                </p>
+              </div>
+              {Number(conv.unread_count) > 0 && (
+                <span style={styles.unreadBadge}>{conv.unread_count}</span>
+              )}
             </div>
           ))}
         </div>

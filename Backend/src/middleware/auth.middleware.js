@@ -10,13 +10,13 @@ async function authenticate(req, res, next, allowBanned) {
 
   let decoded;
   try {
-    decoded = jwt.verify(authHeader.split("")[1], process.env.JWT_SECRET);
+    decoded = jwt.verify(authHeader.split(" ")[1], process.env.JWT_SECRET);
   } catch (error) {
     return res.status(401).json({ success: false, error: "Invalid or expired token"});
   }
   try {
     const result = await pool.query(
-      `SELECT.id, email, is_admin, id_banned, ban_reason, password_changed_at
+      `SELECT id, email, is_admin, is_banned, ban_reason, password_changed_at
       FROM users WHERE id = $1`,
       [decoded.id]
     );
@@ -49,7 +49,7 @@ async function authenticate(req, res, next, allowBanned) {
     req.user = {
       id: account.id,
       email: account.email,
-      is_admin: account.email,
+      is_admin: account.is_admin,
       is_banned: account.is_banned,
     };
 
@@ -60,7 +60,7 @@ async function authenticate(req, res, next, allowBanned) {
 }
 
 export function requireAuth(req, res, next){
-  return authenticate(res, req, next, false);
+  return authenticate(req, res, next, false);
 }
 
 export function requireAuthAllowBanned(req, res, next) {

@@ -33,7 +33,15 @@ export async function getConversations(req, res) {
          u.name AS other_user_name,
          l.title AS listing_title,
          m.body AS last_message,
-         m.created_at
+         m.sender_id AS last_sender_id,
+         m.created_at,
+         (
+           SELECT COUNT(*) FROM messages
+           WHERE listing_id = m.listing_id
+             AND sender_id = CASE WHEN m.sender_id = $1 THEN m.receiver_id ELSE m.sender_id END
+             AND receiver_id = $1
+             AND read = false
+         ) AS unread_count
        FROM messages m
        JOIN users u ON u.id = CASE WHEN m.sender_id = $1 THEN m.receiver_id ELSE m.sender_id END
        JOIN listings l ON l.id = m.listing_id
