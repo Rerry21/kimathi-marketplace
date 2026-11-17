@@ -1,0 +1,63 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --color-bg: #F7F4ED;
+  --color-surface: #FDFBF7;
+  --color-border: #E4DFD1;
+  --color-text: #211F1B;
+  --color-text-muted: #6B6659;
+  --color-accent: #C1561F;
+  --color-accent-muted: #F3E1D2;
+  --color-accent-deep: #8A3C13;
+  --color-highlight: #2E4A38;
+  --color-danger: #8C3A2B;
+  --color-nav-bg: #1C1916;
+  --color-nav-text: #F2EEE5;
+  --color-nav-text-muted: #9A9488;
+
+  color-scheme: light;
+}
+
+:root[data-theme="dark"] {
+  --color-bg: #15130F;
+  --color-surface: #211E19;
+  --color-border: #3A352E;
+  --color-text: #F2EEE5;
+  --color-text-muted: #A69C8D;
+  --color-accent: #E0742E;
+  --color-accent-muted: #3D2A1C;
+  --color-accent-deep: #B85A1F;
+  --color-highlight: #4C7C5A;
+  --color-danger: #D2604A;
+  --color-nav-bg: #0F0D0B;
+  --color-nav-text: #F2EEE5;
+  --color-nav-text-muted: #9A9488;
+
+  color-scheme: dark;
+}
+
+body {
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+a {
+  text-decoration: none;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  font: inherit;
+}
+
+input,
+textarea,
+select {
+  font: inherit;
+}
