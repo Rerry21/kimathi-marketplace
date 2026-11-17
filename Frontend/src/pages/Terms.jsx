@@ -6,7 +6,7 @@ const sections = [
     heading: "About Kimathi Marketplace",
     paragraphs: [
       "Kimathi Marketplace is a platform where students of Dedan Kimathi University can list items and services and contact each other to trade in person on campus.",
-      "We only provide the platform. We are not a buyer or a seller, we do not take part in any trade, and we do not handle payments or shipping. This is an independent, student-built project. It is not run or endorsed by the university.",
+      "We only provide the platform. We are not a buyer or a seller, we do not take part in any trade, and we do not handle payments or shipping. ",
     ],
   },
   {
