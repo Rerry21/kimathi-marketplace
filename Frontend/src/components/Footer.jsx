@@ -129,8 +129,7 @@ function Footer() {
         </div>
 
         <p style={styles.bottom}>
-          © {new Date().getFullYear()} {SITE_NAME}. A student-built project, not run or
-          endorsed by Dedan Kimathi University.
+          © {new Date().getFullYear()} {SITE_NAME}. An independent platform, not run or endorsed by Dedan Kimathi University.
         </p>
       </div>
     </footer>

@@ -21,7 +21,7 @@ function About() {
     <div>
       <PageHeader
         title="About Kimathi Marketplace"
-        subtitle="Built by a student, for students."
+        subtitle="The campus marketplace for Dedan Kimathi sudents"
       />
       <div style={styles.container}>
         <p style={styles.paragraph}>
@@ -41,8 +41,7 @@ function About() {
           exchange.
         </p>
         <p style={styles.paragraph}>
-          This is a student-built, independent project. It is not run or
-          endorsed by the university.
+          Kimathi Marketplace is an independent platform. It is not run or endorsed by the University.
         </p>
       </div>
     </div>
